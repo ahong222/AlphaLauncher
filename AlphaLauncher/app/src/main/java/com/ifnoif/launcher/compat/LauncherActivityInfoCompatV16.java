@@ -19,14 +19,20 @@ package com.ifnoif.launcher.compat;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.LauncherApps;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.content.pm.PackageInfo;
 import android.content.pm.ResolveInfo;
 import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
+
+import com.ifnoif.launcher.Launcher;
+import com.ifnoif.launcher.util.BitmapUtils;
 
 
 public class LauncherActivityInfoCompatV16 extends LauncherActivityInfoCompat {
@@ -35,8 +41,8 @@ public class LauncherActivityInfoCompatV16 extends LauncherActivityInfoCompat {
     private final ComponentName mComponentName;
     private final PackageManager mPm;
 
-    LauncherActivityInfoCompatV16(Context context, ResolveInfo info) {
-        super();
+    LauncherActivityInfoCompatV16(PackageManager pm, Context context, ResolveInfo info) {
+        super(pm);
         mResolveInfo = info;
         mActivityInfo = info.activityInfo;
         mComponentName = new ComponentName(mActivityInfo.packageName, mActivityInfo.name);
@@ -60,7 +66,26 @@ public class LauncherActivityInfoCompatV16 extends LauncherActivityInfoCompat {
         }
     }
 
-    public Drawable getIcon(int density) {
+    public Drawable getIcon(int density){
+        Drawable drawable = null;
+        try {
+            PackageManager packageManager = getPackageManager();
+            drawable = packageManager.getActivityIcon(new ComponentName(mResolveInfo.activityInfo.packageName, mResolveInfo.activityInfo.name));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (drawable == null) {
+            drawable = getDefaultIcon(density);
+        }
+        if (drawable instanceof BitmapDrawable) {
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+            Bitmap newBitmap = BitmapUtils.getNoTransparentBitmap(bitmap);
+            return new BitmapDrawable(newBitmap);
+        }
+        return drawable;
+    }
+
+    public Drawable getDefaultIcon(int density) {
         int iconRes = mResolveInfo.getIconResource();
         Resources resources = null;
         Drawable icon = null;

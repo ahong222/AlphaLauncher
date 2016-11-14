@@ -49,8 +49,6 @@ public class AllAppsRecyclerView extends BaseRecyclerView
     private int mPredictionIconHeight;
     private int mIconHeight;
 
-    // The empty-search result background
-    private AllAppsBackgroundDrawable mEmptySearchBackground;
     private int mEmptySearchBackgroundTopOffset;
 
     private HeaderElevationController mElevationController;
@@ -73,8 +71,6 @@ public class AllAppsRecyclerView extends BaseRecyclerView
         Resources res = getResources();
         addOnItemTouchListener(this);
         mScrollbar.setDetachThumbOnFastScroll();
-        mEmptySearchBackgroundTopOffset = res.getDimensionPixelSize(
-                R.dimen.all_apps_empty_search_bg_top_offset);
     }
 
     /**
@@ -140,28 +136,15 @@ public class AllAppsRecyclerView extends BaseRecyclerView
         super.dispatchDraw(canvas);
     }
 
-    @Override
-    public void onDraw(Canvas c) {
-        // Draw the background
-        if (mEmptySearchBackground != null && mEmptySearchBackground.getAlpha() > 0) {
-            c.clipRect(mBackgroundPadding.left, mBackgroundPadding.top,
-                    getWidth() - mBackgroundPadding.right,
-                    getHeight() - mBackgroundPadding.bottom);
-
-            mEmptySearchBackground.draw(c);
-        }
-
-        super.onDraw(c);
-    }
 
     @Override
     protected boolean verifyDrawable(Drawable who) {
-        return who == mEmptySearchBackground || super.verifyDrawable(who);
+        return super.verifyDrawable(who);
     }
 
     @Override
     protected void onSizeChanged(int w, int h, int oldw, int oldh) {
-        updateEmptySearchBackgroundBounds();
+
     }
 
     @Override
@@ -194,17 +177,7 @@ public class AllAppsRecyclerView extends BaseRecyclerView
         scrollToTop();
 
         if (mApps.hasNoFilteredResults()) {
-            if (mEmptySearchBackground == null) {
-                mEmptySearchBackground = new AllAppsBackgroundDrawable(getContext());
-                mEmptySearchBackground.setAlpha(0);
-                mEmptySearchBackground.setCallback(this);
-                updateEmptySearchBackgroundBounds();
-            }
-            mEmptySearchBackground.animateBgAlpha(1f, 150);
-        } else if (mEmptySearchBackground != null) {
-            // For the time being, we just immediately hide the background to ensure that it does
-            // not overlap with the results
-            mEmptySearchBackground.setBgAlpha(0f);
+            //no result
         }
     }
 
@@ -381,19 +354,4 @@ public class AllAppsRecyclerView extends BaseRecyclerView
         return mPredictionIconHeight + (rowIndex - 1) * mIconHeight;
     }
 
-    /**
-     * Updates the bounds of the empty search background.
-     */
-    private void updateEmptySearchBackgroundBounds() {
-        if (mEmptySearchBackground == null) {
-            return;
-        }
-
-        // Center the empty search background on this new view bounds
-        int x = (getMeasuredWidth() - mEmptySearchBackground.getIntrinsicWidth()) / 2;
-        int y = mEmptySearchBackgroundTopOffset;
-        mEmptySearchBackground.setBounds(x, y,
-                x + mEmptySearchBackground.getIntrinsicWidth(),
-                y + mEmptySearchBackground.getIntrinsicHeight());
-    }
 }

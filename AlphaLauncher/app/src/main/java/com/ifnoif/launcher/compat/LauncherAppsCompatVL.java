@@ -22,6 +22,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.pm.LauncherActivityInfo;
 import android.content.pm.LauncherApps;
+import android.content.pm.PackageManager;
 import android.graphics.Rect;
 import android.os.Build;
 import android.os.Bundle;
@@ -37,12 +38,14 @@ import java.util.Map;
 public class LauncherAppsCompatVL extends LauncherAppsCompat {
 
     protected LauncherApps mLauncherApps;
+    protected PackageManager mPackageManager;
 
     private Map<OnAppsChangedCallbackCompat, WrappedCallback> mCallbacks
             = new HashMap<OnAppsChangedCallbackCompat, WrappedCallback>();
 
     LauncherAppsCompatVL(Context context) {
         super();
+        mPackageManager = context.getPackageManager();
         mLauncherApps = (LauncherApps) context.getSystemService("launcherapps");
     }
 
@@ -56,7 +59,7 @@ public class LauncherAppsCompatVL extends LauncherAppsCompat {
         ArrayList<LauncherActivityInfoCompat> compatList =
                 new ArrayList<LauncherActivityInfoCompat>(list.size());
         for (LauncherActivityInfo info : list) {
-            compatList.add(new LauncherActivityInfoCompatVL(info));
+            compatList.add(new LauncherActivityInfoCompatVL(mPackageManager, info));
         }
         return compatList;
     }
@@ -64,7 +67,7 @@ public class LauncherAppsCompatVL extends LauncherAppsCompat {
     public LauncherActivityInfoCompat resolveActivity(Intent intent, UserHandleCompat user) {
         LauncherActivityInfo activity = mLauncherApps.resolveActivity(intent, user.getUser());
         if (activity != null) {
-            return new LauncherActivityInfoCompatVL(activity);
+            return new LauncherActivityInfoCompatVL(mPackageManager, activity);
         } else {
             return null;
         }

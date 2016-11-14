@@ -186,7 +186,7 @@ public final class Utilities {
         return null;
     }
 
-    private static int getIconBitmapSize() {
+    public static int getIconBitmapSize() {
         return LauncherAppState.getInstance().getInvariantDeviceProfile().iconBitmapSize;
     }
 
@@ -209,7 +209,7 @@ public final class Utilities {
     public static Bitmap createBadgedIconBitmap(
             Drawable icon, UserHandleCompat user, Context context) {
         float scale = FeatureFlags.LAUNCHER3_ICON_NORMALIZATION ?
-                IconNormalizer.getInstance().getScale(icon) : 1;
+                IconNormalizer.getInstance().getScale(icon) : SCALE_APP;
         Bitmap bitmap = createIconBitmap(icon, context, scale);
         if (Utilities.ATLEAST_LOLLIPOP && user != null
                 && !UserHandleCompat.myUserHandle().equals(user)) {
@@ -226,17 +226,20 @@ public final class Utilities {
         }
     }
 
+    public static final float SCALE_APP = 0.8f;
+
     /**
      * Returns a bitmap suitable for the all apps view.
      */
     public static Bitmap createIconBitmap(Drawable icon, Context context) {
-        return createIconBitmap(icon, context, 1.0f /* scale */);
+        return createIconBitmap(icon, context, SCALE_APP /* scale */);
     }
 
     /**
      * @param scale the scale to apply before drawing {@param icon} on the canvas
      */
     public static Bitmap createIconBitmap(Drawable icon, Context context, float scale) {
+        int padding = (int) (20 * context.getResources().getDisplayMetrics().density);
         synchronized (sCanvas) {
             final int iconBitmapSize = getIconBitmapSize();
 
@@ -276,8 +279,8 @@ public final class Utilities {
             final Canvas canvas = sCanvas;
             canvas.setBitmap(bitmap);
 
-            final int left = (textureWidth-width) / 2;
-            final int top = (textureHeight-height) / 2;
+            final int left = (textureWidth-width) / 2 ;
+            final int top = (textureHeight-height) / 2 ;
 
             @SuppressWarnings("all") // suppress dead code warning
             final boolean debug = false;
@@ -291,7 +294,7 @@ public final class Utilities {
             }
 
             sOldBounds.set(icon.getBounds());
-            icon.setBounds(left, top, left+width, top+height);
+            icon.setBounds(left, top, width, top+height);
             canvas.save(Canvas.MATRIX_SAVE_FLAG);
             canvas.scale(scale, scale, textureWidth / 2, textureHeight / 2);
             icon.draw(canvas);

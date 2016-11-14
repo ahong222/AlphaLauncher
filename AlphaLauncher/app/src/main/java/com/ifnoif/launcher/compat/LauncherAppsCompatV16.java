@@ -65,7 +65,7 @@ public class LauncherAppsCompatV16 extends LauncherAppsCompat {
         List<LauncherActivityInfoCompat> list =
                 new ArrayList<LauncherActivityInfoCompat>(infos.size());
         for (ResolveInfo info : infos) {
-            list.add(new LauncherActivityInfoCompatV16(mContext, info));
+            list.add(new LauncherActivityInfoCompatV16(mPm, mContext, info));
         }
         return list;
     }
@@ -73,7 +73,7 @@ public class LauncherAppsCompatV16 extends LauncherAppsCompat {
     public LauncherActivityInfoCompat resolveActivity(Intent intent, UserHandleCompat user) {
         ResolveInfo info = mPm.resolveActivity(intent, 0);
         if (info != null) {
-            return new LauncherActivityInfoCompatV16(mContext, info);
+            return new LauncherActivityInfoCompatV16(mPm, mContext, info);
         }
         return null;
     }

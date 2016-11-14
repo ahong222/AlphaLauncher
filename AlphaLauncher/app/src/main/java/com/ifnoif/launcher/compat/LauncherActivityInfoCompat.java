@@ -19,12 +19,19 @@ package com.ifnoif.launcher.compat;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.content.pm.ResolveInfo;
 import android.graphics.drawable.Drawable;
 
 public abstract class LauncherActivityInfoCompat {
+    private PackageManager mPackageManager;
 
-    LauncherActivityInfoCompat() {
+    LauncherActivityInfoCompat(PackageManager packageManager) {
+        this.mPackageManager = packageManager;
+    }
+
+    public PackageManager getPackageManager() {
+        return mPackageManager;
     }
 
     public abstract ComponentName getComponentName();
@@ -38,6 +45,6 @@ public abstract class LauncherActivityInfoCompat {
      * Creates a LauncherActivityInfoCompat for the primary user.
      */
     public static LauncherActivityInfoCompat fromResolveInfo(ResolveInfo info, Context context) {
-        return new LauncherActivityInfoCompatV16(context, info);
+        return new LauncherActivityInfoCompatV16(context.getPackageManager(), context, info);
     }
 }

@@ -20,15 +20,21 @@ import android.annotation.TargetApi;
 import android.content.ComponentName;
 import android.content.pm.ApplicationInfo;
 import android.content.pm.LauncherActivityInfo;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
+import android.util.Log;
+
+import com.ifnoif.launcher.util.BitmapUtils;
 
 @TargetApi(Build.VERSION_CODES.LOLLIPOP)
 public class LauncherActivityInfoCompatVL extends LauncherActivityInfoCompat {
     private LauncherActivityInfo mLauncherActivityInfo;
 
-    LauncherActivityInfoCompatVL(LauncherActivityInfo launcherActivityInfo) {
-        super();
+    LauncherActivityInfoCompatVL(PackageManager pm, LauncherActivityInfo launcherActivityInfo) {
+        super(pm);
         mLauncherActivityInfo = launcherActivityInfo;
     }
 
@@ -45,7 +51,23 @@ public class LauncherActivityInfoCompatVL extends LauncherActivityInfoCompat {
     }
 
     public Drawable getIcon(int density) {
-        return mLauncherActivityInfo.getIcon(density);
+        Drawable drawable = null;
+        try {
+            PackageManager packageManager = getPackageManager();
+            drawable = packageManager.getActivityIcon(mLauncherActivityInfo.getComponentName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        if (drawable == null) {
+            drawable = mLauncherActivityInfo.getIcon(density);
+        }
+
+        if (drawable instanceof BitmapDrawable) {
+            Bitmap bitmap = ((BitmapDrawable) drawable).getBitmap();
+            Bitmap newBitmap = BitmapUtils.getNoTransparentBitmap(bitmap);
+            return new BitmapDrawable(newBitmap);
+        }
+        return drawable;
     }
 
     public ApplicationInfo getApplicationInfo() {
