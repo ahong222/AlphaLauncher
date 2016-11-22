@@ -636,6 +636,10 @@ public class CellLayout extends ViewGroup implements BubbleTextView.BubbleTextSh
         // Hotseat icons - remove text
         if (child instanceof BubbleTextView) {
             BubbleTextView bubbleChild = (BubbleTextView) child;
+            Log.d("syh","BubbleTextView child:"+bubbleChild.getText());
+            if(bubbleChild.getText().toString().contains("联系人")){
+                Log.d("syh","BubbleTextView child:"+bubbleChild.getText());
+            }
             bubbleChild.setTextVisibility(!mIsHotseat);
         }
 
@@ -832,6 +836,9 @@ public class CellLayout extends ViewGroup implements BubbleTextView.BubbleTextSh
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        if(getId()==R.id.cell_layout){
+          Log.d("syh","syh onMeasure");
+        }
         int widthSpecMode = MeasureSpec.getMode(widthMeasureSpec);
         int heightSpecMode = MeasureSpec.getMode(heightMeasureSpec);
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);

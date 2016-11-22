@@ -63,6 +63,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.os.StrictMode;
 import android.os.SystemClock;
@@ -267,6 +268,9 @@ public class Launcher extends Activity
 
     private boolean mAutoAdvanceRunning = false;
     private AppWidgetHostView mQsb;
+
+    private FolderAll mFolderAll;
+
 
     private Bundle mSavedState;
     // We set the state in both onCreate and then onNewIntent in some cases, which causes both
@@ -1482,6 +1486,9 @@ public class Launcher extends Activity
      * @return A View inflated from layoutResId.
      */
     public View createShortcut(ViewGroup parent, ShortcutInfo info) {
+        if(info.title.toString().contains("应用商店")){
+            Log.d("syh","createShortcut info:"+info);
+        }
         BubbleTextView favorite = (BubbleTextView) mInflater.inflate(R.layout.app_icon,
                 parent, false);
         favorite.applyFromShortcutInfo(info, mIconCache);
@@ -2370,6 +2377,10 @@ public class Launcher extends Activity
         LauncherModel.addItemToDatabase(Launcher.this, folderInfo, container, screenId,
                 cellX, cellY);
         sFolders.put(folderInfo.id, folderInfo);
+        if (mFolderAll != null) {
+            mFolderAll.setFolderList(sFolders);
+        }
+
 
         // Create the view
         FolderIcon newFolder =
@@ -2428,6 +2439,9 @@ public class Launcher extends Activity
      */
     private void unbindFolder(FolderInfo folder) {
         sFolders.remove(folder.id);
+        if (mFolderAll != null) {
+            mFolderAll.setFolderList(sFolders);
+        }
     }
 
     /**
@@ -2479,6 +2493,11 @@ public class Launcher extends Activity
 
         if (mDragController.isDragging()) {
             mDragController.cancelDrag();
+            return;
+        }
+
+        if (mFolderAll != null && mFolderAll.getVisibility() == View.VISIBLE) {
+            mFolderAll.setVisibility(View.GONE);
             return;
         }
 
@@ -2756,7 +2775,7 @@ public class Launcher extends Activity
             // Close any open folder
             closeFolder();
             // Open the requested folder
-            openFolder(folderIcon);
+            openFolderAll(folderIcon);
         } else {
             // Find the open folder...
             int folderScreen;
@@ -3149,6 +3168,17 @@ public class Launcher extends Activity
         }
     }
 
+    public void openFolderAll(FolderIcon folderIcon){
+        FolderAll folderAll = getFolderAll();
+        if (folderAll.getParent() == null) {
+            mDragLayer.addView(folderAll,new DragLayer.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        }
+
+        folderAll.setVisibility(View.VISIBLE);
+        folderAll.sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+        getDragLayer().sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED);
+    }
+
     /**
      * Opens the user folder described by the specified tag. The opening of the folder
      * is animated relative to the specified View. If the View is null, no animation
@@ -3194,16 +3224,23 @@ public class Launcher extends Activity
     }
 
     public void closeFolder(boolean animate) {
-        Folder folder = mWorkspace != null ? mWorkspace.getOpenFolder() : null;
-        if (folder != null) {
-            if (folder.isEditingName()) {
-                folder.dismissEditingName();
-            }
-            closeFolder(folder, animate);
+        if (mFolderAll != null) {
+            mFolderAll.setVisibility(View.GONE);
         }
+//        Folder folder = mWorkspace != null ? mWorkspace.getOpenFolder() : null;
+//        if (folder != null) {
+//            if (folder.isEditingName()) {
+//                folder.dismissEditingName();
+//            }
+//            closeFolder(folder, animate);
+//        }
     }
 
     public void closeFolder(Folder folder, boolean animate) {
+        if(true){
+            closeFolder();
+            return;
+        }
         folder.getInfo().opened = false;
 
         ViewGroup parent = (ViewGroup) folder.getParent().getParent();
@@ -3996,6 +4033,9 @@ public class Launcher extends Activity
             return;
         }
         sFolders = folders.clone();
+
+        mFolderAll = FolderAll.fromXML(this);
+        mFolderAll.setFolderList(sFolders);
     }
 
     private void bindSafeModeWidget(LauncherAppWidgetInfo item) {
@@ -4206,6 +4246,8 @@ public class Launcher extends Activity
         }
 
         InstallShortcutReceiver.disableAndFlushInstallQueue(this);
+
+        Log.d("syh","thread is main:"+(Looper.getMainLooper().getThread().getId()==Thread.currentThread().getId()));
 
         if (mLauncherCallbacks != null) {
             mLauncherCallbacks.finishBindingItems(false);
@@ -4895,6 +4937,13 @@ public class Launcher extends Activity
         } else {
             return Collections.EMPTY_LIST;
         }
+    }
+
+    public FolderAll getFolderAll(){
+        if (mFolderAll == null) {
+            mFolderAll = FolderAll.fromXML(this);
+        }
+        return mFolderAll;
     }
 }
 

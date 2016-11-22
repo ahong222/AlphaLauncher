@@ -3669,4 +3669,11 @@ public class LauncherModel extends BroadcastReceiver
     public static Looper getWorkerLooper() {
         return sWorkerThread.getLooper();
     }
+
+    public static LongArrayMap<FolderInfo> copyBgFolders(){
+        synchronized (sBgLock){
+            LongArrayMap<FolderInfo> copyBgFolders = sBgFolders.clone();
+            return copyBgFolders;
+        }
+    }
 }

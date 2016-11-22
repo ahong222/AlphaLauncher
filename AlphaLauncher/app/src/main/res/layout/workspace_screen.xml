@@ -17,7 +17,7 @@
 <com.ifnoif.launcher.CellLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:launcher="http://schemas.android.com/apk/res-auto"
-
+    android:id="@+id/cell_layout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:hapticFeedbackEnabled="false"

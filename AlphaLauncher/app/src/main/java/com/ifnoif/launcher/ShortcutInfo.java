@@ -161,6 +161,7 @@ public class ShortcutInfo extends ItemInfo {
         this.intent = intent;
         this.title = Utilities.trim(title);
         this.contentDescription = contentDescription;
+        onIconChanged();
         mIcon = icon;
         this.user = user;
     }
@@ -174,6 +175,7 @@ public class ShortcutInfo extends ItemInfo {
             iconResource.packageName = info.iconResource.packageName;
             iconResource.resourceName = info.iconResource.resourceName;
         }
+        onIconChanged();
         mIcon = info.mIcon; // TODO: should make a copy here.  maybe we don't need this ctor at all
         customIcon = info.customIcon;
         flags = info.flags;
@@ -192,14 +194,22 @@ public class ShortcutInfo extends ItemInfo {
     }
 
     public void setIcon(Bitmap b) {
+        onIconChanged();
         mIcon = b;
     }
 
     public Bitmap getIcon(IconCache iconCache) {
         if (mIcon == null) {
+            onIconChanged();
             updateIcon(iconCache);
         }
         return mIcon;
+    }
+
+    public void onIconChanged(){
+        if(title!=null && title.toString().contains("应用商店")){
+            Log.d("syh","syh,this:"+this);
+        }
     }
 
     public void updateIcon(IconCache iconCache, boolean useLowRes) {

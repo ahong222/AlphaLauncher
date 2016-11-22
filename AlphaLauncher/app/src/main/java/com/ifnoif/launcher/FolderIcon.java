@@ -45,6 +45,7 @@ import com.ifnoif.launcher.FolderInfo.FolderListener;
 import com.ifnoif.launcher.util.Thunk;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * An icon that can appear on in the workspace representing an {@link UserFolder}.
@@ -52,6 +53,7 @@ import java.util.ArrayList;
 public class FolderIcon extends FrameLayout implements FolderListener {
     @Thunk Launcher mLauncher;
     @Thunk Folder mFolder;
+    private FolderAll mFolderAll;
     private FolderInfo mInfo;
     @Thunk static boolean sStaticValuesDirty = true;
 
@@ -326,12 +328,14 @@ public class FolderIcon extends FrameLayout implements FolderListener {
         final int itemType = item.itemType;
         return ((itemType == LauncherSettings.Favorites.ITEM_TYPE_APPLICATION ||
                 itemType == LauncherSettings.Favorites.ITEM_TYPE_SHORTCUT) &&
-                !mFolder.isFull() && item != mInfo && !mInfo.opened);
+//                !mFolder.isFull() &&
+                item != mInfo && !mInfo.opened);
     }
 
     public boolean acceptDrop(Object dragInfo) {
         final ItemInfo item = (ItemInfo) dragInfo;
-        return !mFolder.isDestroyed() && willAcceptItem(item);
+//        return !mFolder.isDestroyed() && willAcceptItem(item);
+        return willAcceptItem(item);
     }
 
     public void addItem(ShortcutInfo item) {
@@ -339,7 +343,8 @@ public class FolderIcon extends FrameLayout implements FolderListener {
     }
 
     public void onDragEnter(Object dragInfo) {
-        if (mFolder.isDestroyed() || !willAcceptItem((ItemInfo) dragInfo)) return;
+//        if (mFolder.isDestroyed() || !willAcceptItem((ItemInfo) dragInfo)) return;
+        if (!willAcceptItem((ItemInfo) dragInfo)) return;
         CellLayout.LayoutParams lp = (CellLayout.LayoutParams) getLayoutParams();
         CellLayout layout = (CellLayout) getParent().getParent();
         mFolderRingAnimator.setCell(lp.cellX, lp.cellY);
@@ -374,7 +379,7 @@ public class FolderIcon extends FrameLayout implements FolderListener {
                 item = (ShortcutInfo) mDragInfo;
             }
             mFolder.beginExternalDrag(item);
-            mLauncher.openFolder(FolderIcon.this);
+//            mLauncher.openFolder(FolderIcon.this);
         }
     };
 
@@ -462,15 +467,15 @@ public class FolderIcon extends FrameLayout implements FolderListener {
                     new DecelerateInterpolator(2), new AccelerateInterpolator(2),
                     postAnimationRunnable, DragLayer.ANIMATION_END_DISAPPEAR, null);
             addItem(item);
-            mHiddenItems.add(item);
-            mFolder.hideItem(item);
-            postDelayed(new Runnable() {
-                public void run() {
-                    mHiddenItems.remove(item);
-                    mFolder.showItem(item);
-                    invalidate();
-                }
-            }, DROP_IN_ANIMATION_DURATION);
+//            mHiddenItems.add(item);
+//            mFolder.hideItem(item);
+//            postDelayed(new Runnable() {
+//                public void run() {
+//                    mHiddenItems.remove(item);
+//                    mFolder.showItem(item);
+//                    invalidate();
+//                }
+//            }, DROP_IN_ANIMATION_DURATION);
         } else {
             addItem(item);
         }
@@ -484,7 +489,8 @@ public class FolderIcon extends FrameLayout implements FolderListener {
         } else {
             item = (ShortcutInfo) d.dragInfo;
         }
-        mFolder.notifyDrop();
+//        mFolder.notifyDrop();
+//        FIXME TODO
         onDrop(item, d.dragView, null, 1.0f, mInfo.contents.size(), d.postAnimationRunnable, d);
     }
 
@@ -603,36 +609,39 @@ public class FolderIcon extends FrameLayout implements FolderListener {
     protected void dispatchDraw(Canvas canvas) {
         super.dispatchDraw(canvas);
 
-        if (mFolder == null) return;
-        if (mFolder.getItemCount() == 0 && !mAnimating) return;
-
-        ArrayList<View> items = mFolder.getItemsInReadingOrder();
-        Drawable d;
-        TextView v;
-
-        // Update our drawing parameters if necessary
-        if (mAnimating) {
-            computePreviewDrawingParams(mAnimParams.drawable);
-        } else {
-            v = (TextView) items.get(0);
-            d = getTopDrawable(v);
-            computePreviewDrawingParams(d);
-        }
-
-        int nItemsInPreview = Math.min(items.size(), NUM_ITEMS_IN_PREVIEW);
-        if (!mAnimating) {
-            for (int i = nItemsInPreview - 1; i >= 0; i--) {
-                v = (TextView) items.get(i);
-                if (!mHiddenItems.contains(v.getTag())) {
-                    d = getTopDrawable(v);
-                    mParams = computePreviewItemDrawingParams(i, mParams);
-                    mParams.drawable = d;
-                    drawPreviewItem(canvas, mParams);
-                }
-            }
-        } else {
-            drawPreviewItem(canvas, mAnimParams);
-        }
+        if (mFolderAll == null || mInfo == null) return;
+        List<ItemInfo> getItemList = mFolderAll.getItemList(mInfo.id);
+//TODO FIXME
+//        if (mFolder == null) return;
+//        if (mFolder.getItemCount() == 0 && !mAnimating) return;
+//
+//        ArrayList<View> items = mFolder.getItemsInReadingOrder();
+//        Drawable d;
+//        TextView v;
+//
+//        // Update our drawing parameters if necessary
+//        if (mAnimating) {
+//            computePreviewDrawingParams(mAnimParams.drawable);
+//        } else {
+//            v = (TextView) items.get(0);
+//            d = getTopDrawable(v);
+//            computePreviewDrawingParams(d);
+//        }
+//
+//        int nItemsInPreview = Math.min(items.size(), NUM_ITEMS_IN_PREVIEW);
+//        if (!mAnimating) {
+//            for (int i = nItemsInPreview - 1; i >= 0; i--) {
+//                v = (TextView) items.get(i);
+//                if (!mHiddenItems.contains(v.getTag())) {
+//                    d = getTopDrawable(v);
+//                    mParams = computePreviewItemDrawingParams(i, mParams);
+//                    mParams.drawable = d;
+//                    drawPreviewItem(canvas, mParams);
+//                }
+//            }
+//        } else {
+//            drawPreviewItem(canvas, mAnimParams);
+//        }
     }
 
     private Drawable getTopDrawable(TextView v) {
