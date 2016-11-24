@@ -1978,8 +1978,10 @@ public class LauncherModel extends BroadcastReceiver
                                     continue;
                                 }
 
-                                boolean useLowResIcon = container >= 0 &&
-                                        c.getInt(rankIndex) >= FolderIcon.NUM_ITEMS_IN_PREVIEW;
+                                //TODO FIXME,可能加载到不清晰的图片
+                                boolean useLowResIcon = false;
+//                                        container >= 0 &&
+//                                        c.getInt(rankIndex) >= FolderIcon.NUM_ITEMS_IN_PREVIEW;
 
                                 if (itemReplaced) {
                                     if (user.equals(UserHandleCompat.myUserHandle())) {

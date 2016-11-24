@@ -1,0 +1,494 @@
+warning: LF will be replaced by CRLF in app/app.iml.
+The file will have its original line endings in your working directory.
+[1mdiff --git a/.gradle/2.10/taskArtifacts/cache.properties.lock b/.gradle/2.10/taskArtifacts/cache.properties.lock[m
+[1mindex 9093ccf..f6ceb36 100644[m
+Binary files a/.gradle/2.10/taskArtifacts/cache.properties.lock and b/.gradle/2.10/taskArtifacts/cache.properties.lock differ
+[1mdiff --git a/.gradle/2.10/taskArtifacts/fileHashes.bin b/.gradle/2.10/taskArtifacts/fileHashes.bin[m
+[1mindex 0e64fd3..b091bf9 100644[m
+Binary files a/.gradle/2.10/taskArtifacts/fileHashes.bin and b/.gradle/2.10/taskArtifacts/fileHashes.bin differ
+[1mdiff --git a/.gradle/2.10/taskArtifacts/fileSnapshots.bin b/.gradle/2.10/taskArtifacts/fileSnapshots.bin[m
+[1mindex fe26c2a..8f2d502 100644[m
+Binary files a/.gradle/2.10/taskArtifacts/fileSnapshots.bin and b/.gradle/2.10/taskArtifacts/fileSnapshots.bin differ
+[1mdiff --git a/.gradle/2.10/taskArtifacts/taskArtifacts.bin b/.gradle/2.10/taskArtifacts/taskArtifacts.bin[m
+[1mindex be17cae..c907c17 100644[m
+Binary files a/.gradle/2.10/taskArtifacts/taskArtifacts.bin and b/.gradle/2.10/taskArtifacts/taskArtifacts.bin differ
+[1mdiff --git a/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin b/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin[m
+[1mindex 0d1318d..1fd2438 100644[m
+Binary files a/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin and b/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin differ
+[1mdiff --git a/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock b/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock[m
+[1mindex 4f364ed..1939c43 100644[m
+Binary files a/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock and b/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock differ
+[1mdiff --git a/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock b/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock[m
+[1mindex e14690b..2297848 100644[m
+Binary files a/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock and b/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock differ
+[1mdiff --git a/.idea/workspace.xml b/.idea/workspace.xml[m
+[1mindex cc68cbb..4228e51 100644[m
+[1m--- a/.idea/workspace.xml[m
+[1m+++ b/.idea/workspace.xml[m
+[36m@@ -9,7 +9,20 @@[m
+     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />[m
+   </component>[m
+   <component name="ChangeListManager">[m
+[31m-    <list default="true" id="52506611-320b-4f50-a265-8c23e63a6d85" name="Default" comment="" />[m
+[32m+[m[32m    <list default="true" id="52506611-320b-4f50-a265-8c23e63a6d85" name="Default" comment="">[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/cache.properties.lock" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileHashes.bin" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/fileSnapshots.bin" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/taskArtifacts/taskArtifacts.bin" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.bin" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localClassSetAnalysis/localClassSetAnalysis.lock" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" afterPath="$PROJECT_DIR$/.gradle/2.10/tasks/_app_compileDebugJavaWithJavac/localJarClasspathSnapshot/localJarClasspathSnapshot.lock" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/app.iml" afterPath="$PROJECT_DIR$/app/app.iml" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/IconCache.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/IconCache.java" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/LauncherModel.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/LauncherModel.java" />[m
+[32m+[m[32m      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/ShortcutInfo.java" afterPath="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/ShortcutInfo.java" />[m
+[32m+[m[32m    </list>[m
+     <ignored path="AlphaLauncher.iws" />[m
+     <ignored path=".idea/workspace.xml" />[m
+     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />[m
+[36m@@ -42,16 +55,13 @@[m
+     <favorites_list name="CodeIris Favorites" />[m
+   </component>[m
+   <component name="FileEditorManager">[m
+[31m-    <leaf>[m
+[32m+[m[32m    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">[m
+       <file leaf-file-name="Folder.java" pinned="false" current-in-tab="false">[m
+         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/Folder.java">[m
+           <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="217">[m
+[31m-              <caret line="426" column="80" selection-start-line="426" selection-start-column="80" selection-end-line="426" selection-end-column="80" />[m
+[31m-              <folding>[m
+[31m-                <element signature="e#12962#12963#0" expanded="true" />[m
+[31m-                <element signature="e#12996#12997#0" expanded="true" />[m
+[31m-              </folding>[m
+[32m+[m[32m            <state relative-caret-position="325">[m
+[32m+[m[32m              <caret line="430" column="29" selection-start-line="430" selection-start-column="29" selection-end-line="430" selection-end-column="29" />[m
+[32m+[m[32m              <folding />[m
+             </state>[m
+           </provider>[m
+         </entry>[m
+[36m@@ -62,39 +72,6 @@[m
+             <state />[m
+           </provider>[m
+           <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="-1782">[m
+[31m-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />[m
+[31m-              <folding />[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="IconCache.java" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/IconCache.java">[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="190">[m
+[31m-              <caret line="798" column="30" selection-start-line="798" selection-start-column="30" selection-end-line="798" selection-end-column="30" />[m
+[31m-              <folding />[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="Utilities.java" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/Utilities.java">[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="271">[m
+[31m-              <caret line="228" column="60" selection-start-line="228" selection-start-column="60" selection-end-line="228" selection-end-column="60" />[m
+[31m-              <folding />[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="user_folder_icon_normalized.xml" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/user_folder_icon_normalized.xml">[m
+[31m-          <provider editor-type-id="android-designer2">[m
+[31m-            <state />[m
+[31m-          </provider>[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+             <state relative-caret-position="0">[m
+               <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />[m
+               <folding />[m
+[36m@@ -102,23 +79,60 @@[m
+           </provider>[m
+         </entry>[m
+       </file>[m
+[31m-      <file leaf-file-name="FolderAll.java" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/FolderAll.java">[m
+[32m+[m[32m      <file leaf-file-name="IconCache.java" pinned="false" current-in-tab="false">[m
+[32m+[m[32m        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/IconCache.java">[m
+           <provider selected="true" editor-type-id="text-editor">[m
+             <state relative-caret-position="178">[m
+[31m-              <caret line="98" column="16" selection-start-line="98" selection-start-column="16" selection-end-line="98" selection-end-column="16" />[m
+[32m+[m[32m              <caret line="502" column="87" selection-start-line="502" selection-start-column="74" selection-end-line="502" selection-end-column="87" />[m
+[32m+[m[32m              <folding />[m
+[32m+[m[32m            </state>[m
+[32m+[m[32m          </provider>[m
+[32m+[m[32m        </entry>[m
+[32m+[m[32m      </file>[m
+[32m+[m[32m      <file leaf-file-name="LauncherModel.java" pinned="false" current-in-tab="true">[m
+[32m+[m[32m        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/LauncherModel.java">[m
+[32m+[m[32m          <provider selected="true" editor-type-id="text-editor">[m
+[32m+[m[32m            <state relative-caret-position="350">[m
+[32m+[m[32m              <caret line="1980" column="56" selection-start-line="1980" selection-start-column="56" selection-end-line="1980" selection-end-column="56" />[m
+[32m+[m[32m              <folding />[m
+[32m+[m[32m            </state>[m
+[32m+[m[32m          </provider>[m
+[32m+[m[32m        </entry>[m
+[32m+[m[32m      </file>[m
+[32m+[m[32m      <file leaf-file-name="Utilities.java" pinned="false" current-in-tab="false">[m
+[32m+[m[32m        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/Utilities.java">[m
+[32m+[m[32m          <provider selected="true" editor-type-id="text-editor">[m
+[32m+[m[32m            <state relative-caret-position="4212">[m
+[32m+[m[32m              <caret line="228" column="60" selection-start-line="228" selection-start-column="60" selection-end-line="228" selection-end-column="60" />[m
+               <folding>[m
+[31m-                <element signature="e#799#817#0" expanded="true" />[m
+[32m+[m[32m                <element signature="e#0#33137#0" expanded="false" />[m
+[32m+[m[32m                <element signature="imports" expanded="false" />[m
+[32m+[m[32m                <element signature="e#32857#32858#0" expanded="false" />[m
+[32m+[m[32m                <element signature="e#32900#32901#0" expanded="false" />[m
+[32m+[m[32m                <element signature="e#32961#32962#0" expanded="false" />[m
+[32m+[m[32m                <element signature="e#33014#33015#0" expanded="false" />[m
+[32m+[m[32m                <element signature="e#33074#33075#0" expanded="false" />[m
+[32m+[m[32m                <element signature="e#33127#33128#0" expanded="false" />[m
+               </folding>[m
+             </state>[m
+           </provider>[m
+         </entry>[m
+       </file>[m
+[31m-      <file leaf-file-name="Launcher.java" pinned="false" current-in-tab="true">[m
+[32m+[m[32m      <file leaf-file-name="FolderAll.java" pinned="false" current-in-tab="false">[m
+[32m+[m[32m        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/FolderAll.java">[m
+[32m+[m[32m          <provider selected="true" editor-type-id="text-editor">[m
+[32m+[m[32m            <state relative-caret-position="325">[m
+[32m+[m[32m              <caret line="184" column="82" selection-start-line="184" selection-start-column="75" selection-end-line="184" selection-end-column="89" />[m
+[32m+[m[32m              <folding />[m
+[32m+[m[32m            </state>[m
+[32m+[m[32m          </provider>[m
+[32m+[m[32m        </entry>[m
+[32m+[m[32m      </file>[m
+[32m+[m[32m      <file leaf-file-name="Launcher.java" pinned="false" current-in-tab="false">[m
+         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/Launcher.java">[m
+           <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="243">[m
+[31m-              <caret line="130" column="38" selection-start-line="130" selection-start-column="38" selection-end-line="130" selection-end-column="38" />[m
+[32m+[m[32m            <state relative-caret-position="271">[m
+[32m+[m[32m              <caret line="1489" column="29" selection-start-line="1489" selection-start-column="17" selection-end-line="1489" selection-end-column="38" />[m
+               <folding>[m
+                 <element signature="e#11322#11332#0" expanded="true" />[m
+                 <element signature="e#11402#11412#0" expanded="true" />[m
+[36m@@ -126,181 +140,49 @@[m
+                 <element signature="e#12561#12570#0" expanded="true" />[m
+                 <element signature="e#12718#12726#0" expanded="true" />[m
+                 <element signature="e#14037#14062#0" expanded="true" />[m
+[31m-                <element signature="e#14254#14420#0" expanded="true" />[m
+[31m-                <element signature="e#14419#14420#0" expanded="true" />[m
+[31m-                <element signature="e#15096#15186#0" expanded="true" />[m
+[31m-                <element signature="e#15185#15186#0" expanded="true" />[m
+[31m-                <element signature="e#24789#24790#0" expanded="true" />[m
+[31m-                <element signature="e#24818#24819#0" expanded="true" />[m
+[31m-                <element signature="e#24861#24862#0" expanded="true" />[m
+[31m-                <element signature="e#24893#24894#0" expanded="true" />[m
+[31m-                <element signature="e#27317#27561#0" expanded="true" />[m
+[31m-                <element signature="e#27560#27561#0" expanded="true" />[m
+[31m-                <element signature="e#30036#30235#0" expanded="true" />[m
+[31m-                <element signature="e#30234#30235#0" expanded="true" />[m
+[31m-                <element signature="e#31415#31700#0" expanded="true" />[m
+[31m-                <element signature="e#31699#31700#0" expanded="true" />[m
+[31m-                <element signature="e#35083#35180#0" expanded="true" />[m
+[31m-                <element signature="e#35151#35179#0" expanded="true" />[m
+[31m-                <element signature="e#37180#37598#0" expanded="true" />[m
+[31m-                <element signature="e#37597#37598#0" expanded="true" />[m
+[31m-                <element signature="e#47379#47380#0" expanded="true" />[m
+[31m-                <element signature="e#47428#47429#0" expanded="true" />[m
+[31m-                <element signature="e#50515#50516#0" expanded="true" />[m
+[31m-                <element signature="e#50563#50564#0" expanded="true" />[m
+[31m-                <element signature="e#56179#56342#0" expanded="true" />[m
+[31m-                <element signature="e#56341#56342#0" expanded="true" />[m
+[31m-                <element signature="e#56497#56733#0" expanded="true" />[m
+[31m-                <element signature="e#56732#56733#0" expanded="true" />[m
+[31m-                <element signature="e#57027#57263#0" expanded="true" />[m
+[31m-                <element signature="e#57262#57263#0" expanded="true" />[m
+[31m-                <element signature="e#57633#57896#0" expanded="true" />[m
+[31m-                <element signature="e#57895#57896#0" expanded="true" />[m
+[31m-                <element signature="e#58327#58328#0" expanded="true" />[m
+[31m-                <element signature="e#58373#58374#0" expanded="true" />[m
+[31m-                <element signature="e#58411#58412#0" expanded="true" />[m
+[31m-                <element signature="e#58448#58449#0" expanded="true" />[m
+[31m-                <element signature="e#58486#58487#0" expanded="true" />[m
+[31m-                <element signature="e#58523#58524#0" expanded="true" />[m
+[31m-                <element signature="e#64405#66077#0" expanded="true" />[m
+[31m-                <element signature="e#66076#66077#0" expanded="true" />[m
+[31m-                <element signature="e#68872#69314#0" expanded="true" />[m
+[31m-                <element signature="e#69313#69314#0" expanded="true" />[m
+[31m-                <element signature="e#70618#71460#0" expanded="true" />[m
+[31m-                <element signature="e#71100#71277#0" expanded="true" />[m
+[31m-                <element signature="e#71276#71277#0" expanded="true" />[m
+[31m-                <element signature="e#71459#71460#0" expanded="true" />[m
+[31m-                <element signature="e#72261#72290#0" expanded="true" />[m
+[31m-                <element signature="e#72293#72314#0" expanded="true" />[m
+[31m-                <element signature="e#72435#72436#0" expanded="true" />[m
+[31m-                <element signature="e#72468#72469#0" expanded="true" />[m
+[31m-                <element signature="e#72517#72518#0" expanded="true" />[m
+[31m-                <element signature="e#72549#72550#0" expanded="true" />[m
+[31m-                <element signature="e#72601#72602#0" expanded="true" />[m
+[31m-                <element signature="e#72636#72637#0" expanded="true" />[m
+[31m-                <element signature="e#72675#72676#0" expanded="true" />[m
+[31m-                <element signature="e#72708#72709#0" expanded="true" />[m
+[31m-                <element signature="e#72743#72744#0" expanded="true" />[m
+[31m-                <element signature="e#72774#72775#0" expanded="true" />[m
+[31m-                <element signature="e#72817#72818#0" expanded="true" />[m
+[31m-                <element signature="e#72854#72855#0" expanded="true" />[m
+[31m-                <element signature="e#72913#72914#0" expanded="true" />[m
+[31m-                <element signature="e#72956#72957#0" expanded="true" />[m
+[31m-                <element signature="e#73011#73012#0" expanded="true" />[m
+[31m-                <element signature="e#73048#73049#0" expanded="true" />[m
+[31m-                <element signature="e#73087#73088#0" expanded="true" />[m
+[31m-                <element signature="e#73116#73117#0" expanded="true" />[m
+[31m-                <element signature="e#73168#73169#0" expanded="true" />[m
+[31m-                <element signature="e#73203#73204#0" expanded="true" />[m
+[31m-                <element signature="e#73250#73251#0" expanded="true" />[m
+[31m-                <element signature="e#73287#73288#0" expanded="true" />[m
+[31m-                <element signature="e#76452#76720#0" expanded="true" />[m
+[31m-                <element signature="e#76719#76720#0" expanded="true" />[m
+[31m-                <element signature="e#80725#80726#0" expanded="true" />[m
+[31m-                <element signature="e#80763#80764#0" expanded="true" />[m
+[31m-                <element signature="e#85272#85273#0" expanded="true" />[m
+[31m-                <element signature="e#85335#85336#0" expanded="true" />[m
+[31m-                <element signature="e#85817#85818#0" expanded="true" />[m
+[31m-                <element signature="e#85878#85879#0" expanded="true" />[m
+[31m-                <element signature="e#85921#85922#0" expanded="true" />[m
+[31m-                <element signature="e#85961#85962#0" expanded="true" />[m
+[31m-                <element signature="e#87994#88319#0" expanded="true" />[m
+[31m-                <element signature="e#88318#88319#0" expanded="true" />[m
+[31m-                <element signature="e#93651#93680#0" expanded="true" />[m
+[31m-                <element signature="e#109797#109827#0" expanded="true" />[m
+[31m-                <element signature="e#110359#110389#0" expanded="true" />[m
+[31m-                <element signature="e#111616#112072#0" expanded="true" />[m
+[31m-                <element signature="e#112071#112072#0" expanded="true" />[m
+[31m-                <element signature="e#114242#114269#0" expanded="true" />[m
+[31m-                <element signature="e#114460#114487#0" expanded="true" />[m
+[31m-                <element signature="e#115006#115040#0" expanded="true" />[m
+[31m-                <element signature="e#120573#120600#0" expanded="true" />[m
+[31m-                <element signature="e#121202#121234#0" expanded="true" />[m
+[31m-                <element signature="e#121448#121475#0" expanded="true" />[m
+[31m-                <element signature="e#125139#125203#0" expanded="true" />[m
+[31m-                <element signature="e#125984#126048#0" expanded="true" />[m
+[31m-                <element signature="e#126074#126528#0" expanded="true" />[m
+[31m-                <element signature="e#126527#126528#0" expanded="true" />[m
+[31m-                <element signature="e#128451#128452#0" expanded="true" />[m
+[31m-                <element signature="e#128484#128485#0" expanded="true" />[m
+[31m-                <element signature="e#133433#133434#0" expanded="true" />[m
+[31m-                <element signature="e#133475#133476#0" expanded="true" />[m
+[31m-                <element signature="e#137330#137331#0" expanded="true" />[m
+[31m-                <element signature="e#137379#137380#0" expanded="true" />[m
+[31m-                <element signature="e#137724#138117#0" expanded="true" />[m
+[31m-                <element signature="e#138116#138117#0" expanded="true" />[m
+[31m-                <element signature="e#139265#139404#0" expanded="true" />[m
+[31m-                <element signature="e#139403#139404#0" expanded="true" />[m
+[31m-                <element signature="e#142366#143062#0" expanded="true" />[m
+[31m-                <element signature="e#143061#143062#0" expanded="true" />[m
+[31m-                <element signature="e#148939#148980#0" expanded="true" />[m
+[31m-                <element signature="e#149050#149088#0" expanded="true" />[m
+[31m-                <element signature="e#149232#149278#0" expanded="true" />[m
+[31m-                <element signature="e#149563#149564#0" expanded="true" />[m
+[31m-                <element signature="e#149607#149608#0" expanded="true" />[m
+[31m-                <element signature="e#150763#150764#0" expanded="true" />[m
+[31m-                <element signature="e#150813#150814#0" expanded="true" />[m
+[31m-                <element signature="e#150866#150867#0" expanded="true" />[m
+[31m-                <element signature="e#150909#150910#0" expanded="true" />[m
+[31m-                <element signature="e#154000#154155#0" expanded="true" />[m
+[31m-                <element signature="e#154154#154155#0" expanded="true" />[m
+[31m-                <element signature="e#155351#155492#0" expanded="true" />[m
+[31m-                <element signature="e#155491#155492#0" expanded="true" />[m
+                 <element signature="e#155786#155796#0" expanded="true" />[m
+[31m-                <element signature="e#158878#159068#0" expanded="true" />[m
+[31m-                <element signature="e#159067#159068#0" expanded="true" />[m
+[31m-                <element signature="e#159337#159747#0" expanded="true" />[m
+[31m-                <element signature="e#159746#159747#0" expanded="true" />[m
+[31m-                <element signature="e#160153#160263#0" expanded="true" />[m
+[31m-                <element signature="e#160262#160263#0" expanded="true" />[m
+[31m-                <element signature="e#161100#161209#0" expanded="true" />[m
+[31m-                <element signature="e#161208#161209#0" expanded="true" />[m
+[31m-                <element signature="e#167587#167588#0" expanded="true" />[m
+[31m-                <element signature="e#167637#167638#0" expanded="true" />[m
+[31m-                <element signature="e#167854#167964#0" expanded="true" />[m
+[31m-                <element signature="e#167963#167964#0" expanded="true" />[m
+[31m-                <element signature="e#168948#169115#0" expanded="true" />[m
+[31m-                <element signature="e#169114#169115#0" expanded="true" />[m
+               </folding>[m
+             </state>[m
+           </provider>[m
+         </entry>[m
+       </file>[m
+[32m+[m[32m      <file leaf-file-name="BubbleTextView.java" pinned="false" current-in-tab="false">[m
+[32m+[m[32m        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/BubbleTextView.java">[m
+[32m+[m[32m          <provider selected="true" editor-type-id="text-editor">[m
+[32m+[m[32m            <state relative-caret-position="163">[m
+[32m+[m[32m              <caret line="148" column="0" selection-start-line="148" selection-start-column="0" selection-end-line="148" selection-end-column="0" />[m
+[32m+[m[32m              <folding />[m
+[32m+[m[32m            </state>[m
+[32m+[m[32m          </provider>[m
+[32m+[m[32m        </entry>[m
+[32m+[m[32m      </file>[m
+[32m+[m[32m      <file leaf-file-name="ShortcutInfo.java" pinned="false" current-in-tab="false">[m
+[32m+[m[32m        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/ShortcutInfo.java">[m
+[32m+[m[32m          <provider selected="true" editor-type-id="text-editor">[m
+[32m+[m[32m            <state relative-caret-position="178">[m
+[32m+[m[32m              <caret line="198" column="0" selection-start-line="198" selection-start-column="0" selection-end-line="198" selection-end-column="0" />[m
+[32m+[m[32m              <folding />[m
+[32m+[m[32m            </state>[m
+[32m+[m[32m          </provider>[m
+[32m+[m[32m        </entry>[m
+[32m+[m[32m      </file>[m
+       <file leaf-file-name="FeatureFlags.java" pinned="false" current-in-tab="false">[m
+         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/config/FeatureFlags.java">[m
+           <provider selected="true" editor-type-id="text-editor">[m
+             <state relative-caret-position="540">[m
+               <caret line="34" column="54" selection-start-line="34" selection-start-column="26" selection-end-line="34" selection-end-column="54" />[m
+[31m-              <folding />[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="Workspace.java" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/Workspace.java">[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="207">[m
+[31m-              <caret line="2674" column="32" selection-start-line="2674" selection-start-column="32" selection-end-line="2674" selection-end-column="32" />[m
+[31m-              <folding />[m
+[31m-            </state>[m
+[31m-          </provider>[m
+[31m-        </entry>[m
+[31m-      </file>[m
+[31m-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current-in-tab="false">[m
+[31m-        <entry file="file://$PROJECT_DIR$/app/src/main/AndroidManifest.xml">[m
+[31m-          <provider editor-type-id="android-manifest">[m
+[31m-            <state />[m
+[31m-          </provider>[m
+[31m-          <provider selected="true" editor-type-id="text-editor">[m
+[31m-            <state relative-caret-position="189">[m
+[31m-              <caret line="76" column="51" selection-start-line="76" selection-start-column="51" selection-end-line="76" selection-end-column="51" />[m
+[31m-              <folding />[m
+[32m+[m[32m              <folding>[m
+[32m+[m[32m                <element signature="e#0#1210#0" expanded="false" />[m
+[32m+[m[32m              </folding>[m
+             </state>[m
+           </provider>[m
+         </entry>[m
+       </file>[m
+     </leaf>[m
+   </component>[m
+[32m+[m[32m  <component name="Git.Settings">[m
+[32m+[m[32m    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />[m
+[32m+[m[32m  </component>[m
+   <component name="GradleLocalSettings">[m
+     <option name="availableProjects">[m
+       <map>[m
+[36m@@ -1770,7 +1652,7 @@[m
+     <option name="modificationStamps">[m
+       <map>[m
+         <entry key="D:/workspace_cmvideo/dev/osvideo_trunk" value="8822743670365" />[m
+[31m-        <entry key="D:\git\AlphaLauncher" value="5915490530493" />[m
+[32m+[m[32m        <entry key="D:\git\AlphaLauncher" value="4436609361934" />[m
+       </map>[m
+     </option>[m
+     <option name="projectBuildClasspath">[m
+[36m@@ -2228,6 +2110,9 @@[m
+         <option value="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/Workspace.java" />[m
+         <option value="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/Utilities.java" />[m
+         <option value="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/Launcher.java" />[m
+[32m+[m[32m        <option value="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/ShortcutInfo.java" />[m
+[32m+[m[32m        <option value="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/IconCache.java" />[m
+[32m+[m[32m        <option value="$PROJECT_DIR$/app/src/main/java/com/ifnoif/launcher/LauncherModel.java" />[m
+       </list>[m
+     </option>[m
+   </component>[m
+[36m@@ -2262,12 +2147,7 @@[m
+       <foldersAlwaysOnTop value="true" />[m
+     </navigator>[m
+     <panes>[m
+[31m-      <pane id="Scratches" />[m
+       <pane id="PackagesPane" />[m
+[31m-      <pane id="Scope" />[m
+[31m-      <pane id="AndroidView">[m
+[31m-        <subPane />[m
+[31m-      </pane>[m
+       <pane id="ProjectPane">[m
+         <subPane>[m
+           <PATH>[m
+[36m@@ -2286,44 +2166,13 @@[m
+               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />[m
+             </PATH_ELEMENT>[m
+           </PATH>[m
+[31m-          <PATH>[m
+[31m-            <PATH_ELEMENT>[m
+[31m-              <option name="myItemId" value="AlphaLauncher" />[m
+[31m-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />[m
+[31m-            </PATH_ELEMENT>[m
+[31m-            <PATH_ELEMENT>[m
+[31m-              <option name="myItemId" value="AlphaLauncher" />[m
+[31m-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />[m
+[31m-            </PATH_ELEMENT>[m
+[31m-            <PATH_ELEMENT>[m
+[31m-              <option name="myItemId" value="app" />[m
+[31m-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />[m
+[31m-            </PATH_ELEMENT>[m
+[31m-          </PATH>[m
+[31m-          <PATH>[m
+[31m-            <PATH_ELEMENT>[m
+[31m-              <option name="myItemId" value="AlphaLauncher" />[m
+[31m-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />[m
+[31m-            </PATH_ELEMENT>[m
+[31m-            <PATH_ELEMENT>[m
+[31m-              <option name="myItemId" value="AlphaLauncher" />[m
+[31m-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />[m
+[31m-            </PATH_ELEMENT>[m
+[31m-            <PATH_ELEMENT>[m
+[31m-              <option name="myItemId" value="app" />[m
+[31m-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />[m
+[31m-            </PATH_ELEMENT>[m
+[31m-            <PATH_ELEMENT>[m
+[31m-              <option name="myItemId" value="src" />[m
+[31m-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />[m
+[31m-            </PATH_ELEMENT>[m
+[31m-            <PATH_ELEMENT>[m
+[31m-              <option name="myItemId" value="main" />[m
+[31m-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />[m
+[31m-            </PATH_ELEMENT>[m
+[31m-          </PATH>[m
+         </subPane>[m
+       </pane>[m
+[32m+[m[32m      <pane id="Scope" />[m
+[32m+[m[32m      <pane id="Scratches" />[m
+[32m+[m[32m      <pane id="AndroidView">[m
+[32m+[m[32m        <subPane />[m
+[32m+[m[32m      </pane>[m
+     </panes>[m
+   </component>[m
+   <component name="PropertiesComponent">[m
+[36m@@ -2635,6 +2484,9 @@[m
+   <component name="ShelveChangesManager" show_recycled="false">[m
+     <option name="remove_strategy" value="false" />[m
+   </component>[m
+[32m+[m[32m  <component name="SvnConfiguration">[m
+[32m+[m[32m    <configuration />[m
+[32m+[m[32m  </component>[m
+   <component name="TaskManager">[m
+     <task active="true" id="Default" summary="Default task">[m
+       <changelist id="52506611-320b-4f50-a265-8c23e63a6d85" name="Default" comment="" />[m
+[36m@@ -2646,45 +2498,53 @@[m
+     <servers />[m
+   </component>[m
+   <component name="ToolWindowManager">[m
+[31m-    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />[m
+[31m-    <editor active="true" />[m
+[32m+[m[32m    <frame x="1912" y="-8" width="1936" height="1056" extended-state="0" />[m
+[32m+[m[32m    <editor active="false" />[m
+     <layout>[m
+[31m-      <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32995737" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />[m
+[31m-      <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />[m
+[31m-      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13539445" sideWeight="0.5064935" order="-1" side_tool="true" content_ui="tabs" />[m
+[31m-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />[m
+[31m-      <window_info id="Android Monitor" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998884" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />[m
+[31m-      <window_info id="Properties" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />[m
+[31m-      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_
