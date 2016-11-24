@@ -63,7 +63,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
 import android.os.Handler;
-import android.os.Looper;
 import android.os.Message;
 import android.os.StrictMode;
 import android.os.SystemClock;
@@ -1486,9 +1485,6 @@ public class Launcher extends Activity
      * @return A View inflated from layoutResId.
      */
     public View createShortcut(ViewGroup parent, ShortcutInfo info) {
-        if(info.title.toString().contains("应用商店")){
-            Log.d("syh","createShortcut info:"+info);
-        }
         BubbleTextView favorite = (BubbleTextView) mInflater.inflate(R.layout.app_icon,
                 parent, false);
         favorite.applyFromShortcutInfo(info, mIconCache);
@@ -2377,10 +2373,6 @@ public class Launcher extends Activity
         LauncherModel.addItemToDatabase(Launcher.this, folderInfo, container, screenId,
                 cellX, cellY);
         sFolders.put(folderInfo.id, folderInfo);
-        if (mFolderAll != null) {
-            mFolderAll.setFolderList(sFolders);
-        }
-
 
         // Create the view
         FolderIcon newFolder =
@@ -2775,7 +2767,7 @@ public class Launcher extends Activity
             // Close any open folder
             closeFolder();
             // Open the requested folder
-            openFolderAll(folderIcon);
+            openFolder(folderIcon);
         } else {
             // Find the open folder...
             int folderScreen;
@@ -3168,17 +3160,6 @@ public class Launcher extends Activity
         }
     }
 
-    public void openFolderAll(FolderIcon folderIcon){
-        FolderAll folderAll = getFolderAll();
-        if (folderAll.getParent() == null) {
-            mDragLayer.addView(folderAll,new DragLayer.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
-        }
-
-        folderAll.setVisibility(View.VISIBLE);
-        folderAll.sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
-        getDragLayer().sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED);
-    }
-
     /**
      * Opens the user folder described by the specified tag. The opening of the folder
      * is animated relative to the specified View. If the View is null, no animation
@@ -3187,6 +3168,10 @@ public class Launcher extends Activity
      * @param folderInfo The FolderInfo describing the folder to open.
      */
     public void openFolder(FolderIcon folderIcon) {
+        if (true) {
+            openFolderAll(folderIcon);
+            return;
+        }
         Folder folder = folderIcon.getFolder();
         Folder openFolder = mWorkspace != null ? mWorkspace.getOpenFolder() : null;
         if (openFolder != null && openFolder != folder) {
@@ -3224,24 +3209,20 @@ public class Launcher extends Activity
     }
 
     public void closeFolder(boolean animate) {
-        if (mFolderAll != null) {
-            mFolderAll.setVisibility(View.GONE);
+        Folder folder = mWorkspace != null ? mWorkspace.getOpenFolder() : null;
+        if (folder != null) {
+            if (folder.isEditingName()) {
+                folder.dismissEditingName();
+            }
+            closeFolder(folder, animate);
         }
-//        Folder folder = mWorkspace != null ? mWorkspace.getOpenFolder() : null;
-//        if (folder != null) {
-//            if (folder.isEditingName()) {
-//                folder.dismissEditingName();
-//            }
-//            closeFolder(folder, animate);
-//        }
     }
 
     public void closeFolder(Folder folder, boolean animate) {
-        if(true){
-            closeFolder();
-            return;
-        }
         folder.getInfo().opened = false;
+        if (true) {
+            closeFolderAll();
+        }
 
         ViewGroup parent = (ViewGroup) folder.getParent().getParent();
         if (parent != null) {
@@ -3260,6 +3241,21 @@ public class Launcher extends Activity
         // Notify the accessibility manager that this folder "window" has disappeared and no
         // longer occludes the workspace items
         getDragLayer().sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+    }
+
+    public void openFolderAll(FolderIcon folderIcon){
+        FolderAll folderAll = getFolderAll();
+        if (folderAll.getParent() == null) {
+            mDragLayer.addView(folderAll,new DragLayer.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        }
+
+        folderAll.setVisibility(View.VISIBLE);
+        folderAll.sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
+        getDragLayer().sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED);
+    }
+
+    private void closeFolderAll(){
+
     }
 
     public boolean onLongClick(View v) {
@@ -4247,8 +4243,6 @@ public class Launcher extends Activity
 
         InstallShortcutReceiver.disableAndFlushInstallQueue(this);
 
-        Log.d("syh","thread is main:"+(Looper.getMainLooper().getThread().getId()==Thread.currentThread().getId()));
-
         if (mLauncherCallbacks != null) {
             mLauncherCallbacks.finishBindingItems(false);
         }
@@ -4944,6 +4938,13 @@ public class Launcher extends Activity
             mFolderAll = FolderAll.fromXML(this);
         }
         return mFolderAll;
+    }
+
+    public void onAddFolder(FolderInfo folderInfo) {
+        sFolders.put(folderInfo.id, folderInfo);
+        if (mFolderAll != null) {
+            mFolderAll.setFolderList(sFolders);
+        }
     }
 }
 

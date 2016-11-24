@@ -226,7 +226,7 @@ public final class Utilities {
         }
     }
 
-    public static final float SCALE_APP = 0.8f;
+    public static final float SCALE_APP = 0.8f; //default 1f
 
     /**
      * Returns a bitmap suitable for the all apps view.

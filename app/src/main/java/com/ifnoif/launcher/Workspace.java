@@ -2685,6 +2685,9 @@ public class Workspace extends PagedView
                 fi.addItem(destInfo);
                 fi.addItem(sourceInfo);
             }
+
+            mLauncher.onAddFolder(fi.getFolderInfo());
+
             return true;
         }
         return false;

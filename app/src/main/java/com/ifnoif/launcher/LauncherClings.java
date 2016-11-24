@@ -118,8 +118,6 @@ class LauncherClings implements OnClickListener {
     }
 
     public void showLongPressCling(boolean showWelcome) {
-        android.util.Log.d("syh","showLongPressCling showWelcome");
-        Thread.dumpStack();
         mIsVisible = true;
         ViewGroup root = (ViewGroup) mLauncher.findViewById(R.id.launcher);
         View cling = mInflater.inflate(R.layout.longpress_cling, root, false);
