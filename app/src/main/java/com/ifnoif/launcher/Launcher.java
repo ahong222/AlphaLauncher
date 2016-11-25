@@ -103,6 +103,7 @@ import com.ifnoif.launcher.compat.UserHandleCompat;
 import com.ifnoif.launcher.compat.UserManagerCompat;
 import com.ifnoif.launcher.model.WidgetsModel;
 import com.ifnoif.launcher.util.ComponentKey;
+import com.ifnoif.launcher.util.DeviceAndOSUtils;
 import com.ifnoif.launcher.util.LongArrayMap;
 import com.ifnoif.launcher.util.PackageManagerHelper;
 import com.ifnoif.launcher.util.TestingUtils;
@@ -413,6 +414,8 @@ public class Launcher extends Activity
                     .penaltyDeath()
                     .build());
         }
+
+        DeviceAndOSUtils.setNaviAndStatusBackground(this);
 
         if (mLauncherCallbacks != null) {
             mLauncherCallbacks.preOnCreate();
@@ -1343,9 +1346,11 @@ public class Launcher extends Activity
         mWorkspace.setPageSwitchListener(this);
         mPageIndicators = mDragLayer.findViewById(R.id.page_indicator);
 
-        mLauncherView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        mDragLayer.setPadding(0, DeviceAndOSUtils.getStatusBarHeight(this), 0, DeviceAndOSUtils.getCurrentNavBarHeight(this));
+//        mLauncherView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+//                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+//                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+
         mWorkspaceBackgroundDrawable = getResources().getDrawable(R.drawable.workspace_bg);
 
         // Setup the drag layer
@@ -2490,6 +2495,7 @@ public class Launcher extends Activity
 
         if (mFolderAll != null && mFolderAll.getVisibility() == View.VISIBLE) {
             mFolderAll.setVisibility(View.GONE);
+            mDragLayer.setVisibility(View.VISIBLE);
             return;
         }
 
@@ -3244,12 +3250,13 @@ public class Launcher extends Activity
     }
 
     public void openFolderAll(FolderIcon folderIcon){
-        FolderAll folderAll = getFolderAll();
+        FolderAll folderAll = mFolderAll;
         if (folderAll.getParent() == null) {
-            mDragLayer.addView(folderAll,new DragLayer.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+            ((ViewGroup)mLauncherView).addView(folderAll,new DragLayer.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         }
 
         folderAll.setVisibility(View.VISIBLE);
+        mDragLayer.setVisibility(View.GONE);
         folderAll.sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_STATE_CHANGED);
         getDragLayer().sendAccessibilityEvent(AccessibilityEvent.TYPE_WINDOW_CONTENT_CHANGED);
     }
@@ -4031,6 +4038,7 @@ public class Launcher extends Activity
         sFolders = folders.clone();
 
         mFolderAll = FolderAll.fromXML(this);
+        mFolderAll.setPadding(0, DeviceAndOSUtils.getStatusBarHeight(this), 0, DeviceAndOSUtils.getCurrentNavBarHeight(this));
         mFolderAll.setFolderList(sFolders);
     }
 
