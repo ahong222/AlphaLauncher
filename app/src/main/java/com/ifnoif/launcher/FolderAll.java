@@ -88,8 +88,8 @@ public class FolderAll extends LinearLayout {
         mLauncher = (Launcher) getContext();
         DeviceProfile grid = mLauncher.getDeviceProfile();
         COLUMN_COUNT = (int) grid.inv.numHotseatIcons;
-        mCellWidth = grid.hotseatCellWidthPx;
-        mCellHeight = grid.hotseatCellHeightPx;
+        mCellWidth = grid.folderCellWidthPx;
+        mCellHeight = grid.folderCellHeightPx;
 
         mRecycleView = (RecyclerView) findViewById(R.id.recycle_view);
         mRecycleView.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -149,7 +149,7 @@ public class FolderAll extends LinearLayout {
 
         public void onBindView(CustomFolderInfo customFolderInfo, int position) {
             TextView title = (TextView) itemView.findViewById(R.id.title);
-            title.setText("文件夹："+customFolderInfo.folderInfo.title);
+            title.setText(customFolderInfo.folderInfo.title);
         }
     }
 
