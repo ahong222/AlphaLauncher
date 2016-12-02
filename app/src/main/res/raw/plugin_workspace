@@ -1,0 +1,34 @@
+{
+  "data": [
+    {
+      "type": "folder",
+      "data": [
+        {
+          "type": "app",
+          "pkg": "com.google.android.talk",
+          "class": "com.google.android.talk.SigningInActivity",
+          "title": "环聊"
+        },
+        {
+          "type": "app",
+          "pkg": "com.google.android.apps.maps",
+          "class": "com.google.android.maps.MapsActivity",
+          "title": "谷歌地图"
+        },
+        {
+          "type": "app",
+          "pkg": "com.google.android.gm",
+          "class": "com.google.android.gm.ConversationListActivityGmail",
+          "title": "Gmail"
+        }
+      ],
+      "title": "文件夹1"
+    },
+    {
+      "type": "app",
+      "pkg": "com.google.android.music",
+      "class": "com.android.music.activitymanagement.TopLevelActivity",
+      "title": "音乐"
+    }
+  ]
+}

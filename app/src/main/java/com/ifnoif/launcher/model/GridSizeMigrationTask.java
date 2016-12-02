@@ -22,7 +22,7 @@ import com.ifnoif.launcher.LauncherProvider;
 import com.ifnoif.launcher.LauncherSettings;
 import com.ifnoif.launcher.LauncherSettings.Favorites;
 import com.ifnoif.launcher.Utilities;
-import com.ifnoif.launcher.backup.nano.BackupProtos;
+//import com.ifnoif.launcher.backup.nano.BackupProtos;
 import com.ifnoif.launcher.compat.AppWidgetManagerCompat;
 import com.ifnoif.launcher.compat.PackageInstallerCompat;
 import com.ifnoif.launcher.util.LongArrayMap;
@@ -886,16 +886,16 @@ public class GridSizeMigrationTask {
         return String.format(Locale.ENGLISH, "%d,%d", x, y);
     }
 
-    public static void markForMigration(
-            Context context, HashSet<String> widgets, BackupProtos.DeviceProfieData srcProfile) {
-        Utilities.getPrefs(context).edit()
-                .putString(KEY_MIGRATION_SRC_WORKSPACE_SIZE,
-                        getPointString((int) srcProfile.desktopCols, (int) srcProfile.desktopRows))
-                .putString(KEY_MIGRATION_SRC_HOTSEAT_SIZE,
-                        getPointString((int) srcProfile.hotseatCount, srcProfile.allappsRank))
-                .putStringSet(KEY_MIGRATION_WIDGET_MINSIZE, widgets)
-                .apply();
-    }
+//    public static void markForMigration(
+//            Context context, HashSet<String> widgets, BackupProtos.DeviceProfieData srcProfile) {
+//        Utilities.getPrefs(context).edit()
+//                .putString(KEY_MIGRATION_SRC_WORKSPACE_SIZE,
+//                        getPointString((int) srcProfile.desktopCols, (int) srcProfile.desktopRows))
+//                .putString(KEY_MIGRATION_SRC_HOTSEAT_SIZE,
+//                        getPointString((int) srcProfile.hotseatCount, srcProfile.allappsRank))
+//                .putStringSet(KEY_MIGRATION_WIDGET_MINSIZE, widgets)
+//                .apply();
+//    }
 
     /**
      * Migrates the workspace and hotseat in case their sizes changed.

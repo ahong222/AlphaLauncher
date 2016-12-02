@@ -67,6 +67,7 @@ import android.os.Message;
 import android.os.StrictMode;
 import android.os.SystemClock;
 import android.os.UserHandle;
+import android.support.v4.app.ActivityCompat;
 import android.text.Selection;
 import android.text.SpannableStringBuilder;
 import android.text.TextUtils;
@@ -102,7 +103,10 @@ import com.ifnoif.launcher.compat.LauncherAppsCompat;
 import com.ifnoif.launcher.compat.UserHandleCompat;
 import com.ifnoif.launcher.compat.UserManagerCompat;
 import com.ifnoif.launcher.model.WidgetsModel;
+import com.ifnoif.launcher.plugin.WorkspaceParser;
+import com.ifnoif.launcher.util.CommonUtils;
 import com.ifnoif.launcher.util.ComponentKey;
+import com.ifnoif.launcher.util.DebugUtils;
 import com.ifnoif.launcher.util.DeviceAndOSUtils;
 import com.ifnoif.launcher.util.LongArrayMap;
 import com.ifnoif.launcher.util.PackageManagerHelper;
@@ -111,6 +115,9 @@ import com.ifnoif.launcher.util.Thunk;
 import com.ifnoif.launcher.widget.PendingAddWidgetInfo;
 import com.ifnoif.launcher.widget.WidgetHostViewLoader;
 import com.ifnoif.launcher.widget.WidgetsContainerView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileDescriptor;
@@ -422,6 +429,7 @@ public class Launcher extends Activity
         }
 
         super.onCreate(savedInstanceState);
+        ActivityCompat.requestPermissions(this,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},100);
 
         LauncherAppState app = LauncherAppState.getInstance();
 
@@ -2484,6 +2492,8 @@ public class Launcher extends Activity
 
     @Override
     public void onBackPressed() {
+        DebugUtils.copyDBToSDCard(this, LauncherFiles.LAUNCHER_DB);
+
         if (mLauncherCallbacks != null && mLauncherCallbacks.handleBackPressed()) {
             return;
         }

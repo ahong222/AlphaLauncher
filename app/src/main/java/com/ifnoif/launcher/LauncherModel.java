@@ -56,6 +56,7 @@ import com.ifnoif.launcher.model.GridSizeMigrationTask;
 import com.ifnoif.launcher.model.WidgetsModel;
 import com.ifnoif.launcher.util.ComponentKey;
 import com.ifnoif.launcher.util.CursorIconInfo;
+import com.ifnoif.launcher.util.DebugUtils;
 import com.ifnoif.launcher.util.FlagOp;
 import com.ifnoif.launcher.util.LongArrayMap;
 import com.ifnoif.launcher.util.ManagedProfileHeuristic;
@@ -84,7 +85,7 @@ import java.util.Set;
  */
 public class LauncherModel extends BroadcastReceiver
         implements LauncherAppsCompat.OnAppsChangedCallbackCompat {
-    static final boolean DEBUG_LOADERS = false;
+    static final boolean DEBUG_LOADERS = BuildConfig.DEBUG;
     private static final boolean DEBUG_RECEIVER = false;
     private static final boolean REMOVE_UNRESTORED_ICONS = true;
 
@@ -1754,7 +1755,9 @@ public class LauncherModel extends BroadcastReceiver
             } else {
                 // Make sure the default workspace is loaded
                 Launcher.addDumpLog(TAG, "loadWorkspace: loading default favorites", false);
-                LauncherAppState.getLauncherProvider().loadDefaultFavoritesIfNecessary();
+//                LauncherAppState.getLauncherProvider().loadDefaultFavoritesIfNecessary();
+                LauncherAppState.getLauncherProvider().loadDefaultWorkspaceIfNecessary();
+//                DebugUtils.copyDBToSDCard(mContext, LauncherFiles.LAUNCHER_DB);
             }
 
             synchronized (sBgLock) {
@@ -1916,6 +1919,7 @@ public class LauncherModel extends BroadcastReceiver
                                             } else if ((promiseType & ShortcutInfo.FLAG_RESTORED_APP_TYPE) != 0) {
                                                 // This is a common app. Try to replace this.
                                                 int appType = CommonAppTypeParser.decodeItemTypeFromFlag(promiseType);
+                                                Log.d(TAG,"appType:"+appType);
                                                 CommonAppTypeParser parser = new CommonAppTypeParser(id, appType, context);
                                                 if (parser.findDefaultApp()) {
                                                     // Default app found. Replace it.
@@ -2340,6 +2344,7 @@ public class LauncherModel extends BroadcastReceiver
                 }
 
                 if (DEBUG_LOADERS) {
+                    dumpWorkspace();
                     Log.d(TAG, "loaded workspace in " + (SystemClock.uptimeMillis()-t) + "ms");
                     Log.d(TAG, "workspace layout: ");
                     int nScreens = occupied.size();
@@ -2364,6 +2369,16 @@ public class LauncherModel extends BroadcastReceiver
                     }
                 }
             }
+        }
+
+        private void dumpWorkspace() {
+            Log.d(TAG, "dumpWorkspace start =================");
+            synchronized (sBgLock) {
+                for (ItemInfo itemInfo : sBgWorkspaceItems) {
+                    Log.d(TAG, "itemInfo:" + itemInfo);
+                }
+            }
+            Log.d(TAG, "dumpWorkspace end =================");
         }
 
         /**

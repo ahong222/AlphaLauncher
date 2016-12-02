@@ -54,8 +54,13 @@ import com.ifnoif.launcher.LauncherSettings.Favorites;
 import com.ifnoif.launcher.compat.UserHandleCompat;
 import com.ifnoif.launcher.compat.UserManagerCompat;
 import com.ifnoif.launcher.config.ProviderConfig;
+import com.ifnoif.launcher.plugin.WorkspaceParser;
+import com.ifnoif.launcher.util.CommonUtils;
 import com.ifnoif.launcher.util.ManagedProfileHeuristic;
 import com.ifnoif.launcher.util.Thunk;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.net.URISyntaxException;
 import java.util.ArrayList;
@@ -284,9 +289,9 @@ public class LauncherProvider extends ContentProvider {
                 if (mListener != null) {
                     mListener.onSettingsChanged(arg, value);
                 }
-                if (extras.getBoolean(LauncherSettings.Settings.NOTIFY_BACKUP)) {
-                    LauncherBackupAgentHelper.dataChanged(getContext());
-                }
+//                if (extras.getBoolean(LauncherSettings.Settings.NOTIFY_BACKUP)) {
+//                    LauncherBackupAgentHelper.dataChanged(getContext());
+//                }
                 Bundle result = new Bundle();
                 result.putBoolean(LauncherSettings.Settings.EXTRA_VALUE, value);
                 return result;
@@ -336,7 +341,7 @@ public class LauncherProvider extends ContentProvider {
      */
     protected void notifyListeners() {
         // always notify the backup agent
-        LauncherBackupAgentHelper.dataChanged(getContext());
+//        LauncherBackupAgentHelper.dataChanged(getContext());
         if (mListener != null) {
             mListener.onLauncherProviderChange();
         }
@@ -413,6 +418,58 @@ public class LauncherProvider extends ContentProvider {
                         getDefaultLayoutParser());
             }
             clearFlagEmptyDbCreated();
+        }
+    }
+
+    synchronized public void loadDefaultWorkspaceIfNecessary() {
+        SharedPreferences sp = Utilities.getPrefs(getContext());
+
+        if (sp.getBoolean(EMPTY_DATABASE_CREATED, false)) {
+            String result = CommonUtils.getResContent(getContext(), R.raw.plugin_workspace);
+            WorkspaceParser parser = new WorkspaceParser();
+            List<WorkspaceParser.CustomItemInfo> workspaceList = null;
+            try {
+                workspaceList = parser.parseAll(new JSONObject(result));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            parser.destroy();
+
+            createEmptyDB();
+
+            if (workspaceList != null && workspaceList.size() > 0) {
+                for (WorkspaceParser.CustomItemInfo customItemInfo : workspaceList) {
+                    if (customItemInfo instanceof WorkspaceParser.CustomApp) {
+                        WorkspaceParser.CustomApp customApp = (WorkspaceParser.CustomApp)customItemInfo;
+                        ContentValues mValues = new ContentValues();
+                        DatabaseHelper mCallback = mOpenHelper;
+                        long id = mCallback.generateNewItemId();
+                        final Intent intent = new Intent(Intent.ACTION_MAIN, null)
+                                .addCategory(Intent.CATEGORY_LAUNCHER)
+                                .setComponent(customApp.componentName)
+                                .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
+                                        Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
+
+                        mValues.put(Favorites.INTENT, intent.toUri(0));
+                        mValues.put(Favorites.TITLE, customApp.title);
+                        mValues.put(Favorites.ITEM_TYPE,  Favorites.ITEM_TYPE_APPLICATION);
+                        mValues.put(Favorites.SPANX, 1);
+                        mValues.put(Favorites.SPANY, 1);
+                        mValues.put(Favorites._ID, id);
+
+                        mValues.put(Favorites.CONTAINER, Favorites.CONTAINER_DESKTOP);
+                        mValues.put(Favorites.CELLX, 1);
+                        mValues.put(Favorites.CELLY, 0);
+                        mValues.put(Favorites.SCREEN, 0);
+                        if (mCallback.insertAndCheck(mOpenHelper.getWritableDatabase(), mValues) < 0) {
+                        }
+                    }
+                }
+            }
+
+            ArrayList<Long> screenIds = new ArrayList<Long>();
+            screenIds.add(0L);
+            mOpenHelper.initScreen(screenIds, mOpenHelper.getWritableDatabase());
         }
     }
 
@@ -1116,6 +1173,28 @@ public class LauncherProvider extends ContentProvider {
             mMaxScreenId = initializeMaxScreenId(db);
 
             return count;
+        }
+
+        public void initScreen(ArrayList<Long> screenIds, SQLiteDatabase db) {
+            // Add the screens specified by the items above
+            Collections.sort(screenIds);
+            int rank = 0;
+            ContentValues values = new ContentValues();
+            for (Long id : screenIds) {
+                values.clear();
+                values.put(LauncherSettings.WorkspaceScreens._ID, id);
+                values.put(LauncherSettings.WorkspaceScreens.SCREEN_RANK, rank);
+                if (dbInsertAndCheck(this, db, TABLE_WORKSPACE_SCREENS, null, values) < 0) {
+                    throw new RuntimeException("Failed initialize screen table"
+                            + "from default layout");
+                }
+                rank++;
+            }
+
+            // Ensure that the max ids are initialized
+            mMaxItemId = initializeMaxItemId(db);
+            mMaxScreenId = initializeMaxScreenId(db);
+
         }
 
         @Thunk void migrateLauncher2Shortcuts(SQLiteDatabase db, Uri uri) {

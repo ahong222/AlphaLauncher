@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-apply plugin: 'com.google.protobuf'
+//apply plugin: 'com.google.protobuf'
 android {
     compileSdkVersion 23
     buildToolsVersion "24.0.1"
@@ -22,11 +22,11 @@ android {
 
     }
 
-    sourceSets {
-        main {
-            proto.srcDirs 'protos/'
-        }
-    }
+//    sourceSets {
+//        main {
+//            proto.srcDirs 'protos/'
+//        }
+//    }
 
     buildTypes {
         release {
@@ -41,22 +41,23 @@ android {
         mavenCentral()
     }
 
-    protobuf {
-        // Configure the protoc executable
-        protoc {
-            artifact = 'com.google.protobuf:protoc:3.0.0-alpha-3'
-        }
-    }
+//    protobuf {
+//        // Configure the protoc executable
+//        protoc {
+//            artifact = 'com.google.protobuf:protoc:3.0.0-alpha-3'
+//        }
+//    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile 'com.android.support:support-v4:23.1.1'
-    compile 'com.android.support:recyclerview-v7:24.1.1'
-    compile 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-2'
+    compile 'com.android.support:support-v4:24.1.1'
+    compile('com.android.support:recyclerview-v7:24.1.1'){
+        exclude module: 'support-v4'
+    }
 
-    compile 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+//    compile 'com.google.protobuf.nano:protobuf-javanano:3.0.0-alpha-2'
 }
 
 

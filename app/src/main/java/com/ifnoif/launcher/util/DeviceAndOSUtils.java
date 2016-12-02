@@ -9,8 +9,6 @@ import android.view.KeyEvent;
 import android.view.ViewConfiguration;
 import android.view.WindowManager;
 
-import com.readystatesoftware.systembartint.SystemBarTintManager;
-
 /**
  * Created by syh on 2016/11/24.
  */

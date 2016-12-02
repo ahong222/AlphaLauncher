@@ -30,6 +30,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.view.WindowInsetsCompat;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.Pair;
@@ -41,10 +42,14 @@ import com.ifnoif.launcher.util.Thunk;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * Layout parsing code for auto installs layout
@@ -169,6 +174,7 @@ public class AutoInstallsLayout {
     public AutoInstallsLayout(Context context, AppWidgetHost appWidgetHost,
             LayoutParserCallback callback, Resources res,
             int layoutId, String rootTag) {
+        Thread.dumpStack();
         mContext = context;
         mAppWidgetHost = appWidgetHost;
         mCallback = callback;
@@ -199,17 +205,55 @@ public class AutoInstallsLayout {
         }
     }
 
+    private void copy(int rawId) {
+        try {
+//            String fileName = "launcher_" + rawId + ".txt";
+            Log.d(TAG, " start copy fileName:" + mSourceRes.getResourceName(rawId)+" res:"+(mContext.getResources()==mSourceRes)+" pkg:"+mContext.getPackageName()+" ============================================================");
+//
+            InputStream inputStream = mSourceRes.openRawResource(rawId);
+//            File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath()+"/"+fileName);
+//            if (!file.exists()) {
+//                file.createNewFile();
+//            }
+
+//            FileOutputStream fileOutputStream = new FileOutputStream(file);
+            int count = 0;
+            byte[] buffer = new byte[1024];
+            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+            while ((count = inputStream.read(buffer)) != -1) {
+                byteArrayOutputStream.write(buffer, 0, count);
+            }
+//            fileOutputStream.close();
+            inputStream.close();
+            Log.d(TAG,"copy:"+byteArrayOutputStream.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void logTag(HashMap<String, TagParser> map){
+        Log.d(TAG,"key: start logTag =======================");
+        Iterator<Map.Entry<String, TagParser>> iterator = map.entrySet().iterator();
+        while(iterator.hasNext()){
+            Map.Entry<String, TagParser> entry = iterator.next();
+            Log.d(TAG,"key:"+entry.getKey()+" value:"+entry.getValue());
+        }
+    }
+
     /**
      * Parses the layout and returns the number of elements added on the homescreen.
      */
     protected int parseLayout(int layoutId, ArrayList<Long> screenIds)
             throws XmlPullParserException, IOException {
+//        copy(layoutId);
         XmlResourceParser parser = mSourceRes.getXml(layoutId);
         beginDocument(parser, mRootTag);
         final int depth = parser.getDepth();
         int type;
         HashMap<String, TagParser> tagParserMap = getLayoutElementsMap();
         int count = 0;
+
+        logTag(tagParserMap);
 
         while (((type = parser.next()) != XmlPullParser.END_TAG ||
                 parser.getDepth() > depth) && type != XmlPullParser.END_DOCUMENT) {
@@ -245,8 +289,8 @@ public class AutoInstallsLayout {
             HashMap<String, TagParser> tagParserMap,
             ArrayList<Long> screenIds)
                     throws XmlPullParserException, IOException {
-
         if (TAG_INCLUDE.equals(parser.getName())) {
+            Log.d(TAG, "parseAndAddNode TAG_INCLUDE ============");
             final int resId = getAttributeResourceValue(parser, ATTR_WORKSPACE, 0);
             if (resId != 0) {
                 // recursively load some more favorites, why not?
@@ -255,6 +299,7 @@ public class AutoInstallsLayout {
                 return 0;
             }
         }
+        Log.d(TAG, "parseAndAddNode name:" + parser.getName()+"1111111111111111111111111");
 
         mValues.clear();
         parseContainerAndScreen(parser, mTemp);
@@ -268,8 +313,10 @@ public class AutoInstallsLayout {
                 convertToDistanceFromEnd(getAttributeValue(parser, ATTR_X), mColumnCount));
         mValues.put(Favorites.CELLY,
                 convertToDistanceFromEnd(getAttributeValue(parser, ATTR_Y), mRowCount));
+        Log.d(TAG, "parseAndAddNode container:" + container+" screenId:"+screenId+" CELLX:"+mValues.get(Favorites.CELLX)+" CELLY:"+mValues.get(Favorites.CELLY));
 
         TagParser tagParser = tagParserMap.get(parser.getName());
+        Log.d(TAG, "parseAndAddNode name:" + parser.getName()+" tagParser:"+tagParser);
         if (tagParser == null) {
             if (LOGD) Log.d(TAG, "Ignoring unknown element tag: " + parser.getName());
             return 0;
@@ -337,7 +384,7 @@ public class AutoInstallsLayout {
         public long parseAndAdd(XmlResourceParser parser) {
             final String packageName = getAttributeValue(parser, ATTR_PACKAGE_NAME);
             final String className = getAttributeValue(parser, ATTR_CLASS_NAME);
-
+            Log.d(TAG,"AppShortcutParser parseAndAdd packageName:"+packageName+" className:"+className);
             if (!TextUtils.isEmpty(packageName) && !TextUtils.isEmpty(className)) {
                 ActivityInfo info;
                 try {
@@ -357,6 +404,7 @@ public class AutoInstallsLayout {
                         .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                                 Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
 
+                    Log.d(TAG,"AppShortcutParser Shortcut title:"+info.loadLabel(mPackageManager)+" intent:"+intent.toString());
                     return addShortcut(info.loadLabel(mPackageManager).toString(),
                             intent, Favorites.ITEM_TYPE_APPLICATION);
                 } catch (PackageManager.NameNotFoundException e) {
@@ -397,8 +445,10 @@ public class AutoInstallsLayout {
                 .setComponent(new ComponentName(packageName, className))
                 .setFlags(Intent.FLAG_ACTIVITY_NEW_TASK |
                         Intent.FLAG_ACTIVITY_RESET_TASK_IF_NEEDED);
-            return addShortcut(mContext.getString(R.string.package_state_unknown), intent,
+            long result =  addShortcut(mContext.getString(R.string.package_state_unknown), intent,
                     Favorites.ITEM_TYPE_APPLICATION);
+            Log.d(TAG,"AutoInstallParser Shortcut title:"+mContext.getString(R.string.package_state_unknown)+" intent:"+intent.toString()+" result:"+result);
+            return result;
         }
     }
 
@@ -568,6 +618,7 @@ public class AutoInstallsLayout {
             } else {
                 title = mContext.getResources().getString(R.string.folder_name);
             }
+            Log.d(TAG, "FolderParser parseAndAdd title:" + title + "++++++++++++");
 
             mValues.put(Favorites.TITLE, title);
             mValues.put(Favorites.ITEM_TYPE, Favorites.ITEM_TYPE_FOLDER);
@@ -596,6 +647,7 @@ public class AutoInstallsLayout {
                 mValues.put(Favorites.RANK, rank);
 
                 TagParser tagParser = mFolderElements.get(parser.getName());
+                Log.d(TAG,"FolderParser tagName:"+parser.getName()+" tagParser:"+tagParser);
                 if (tagParser != null) {
                     final long id = tagParser.parseAndAdd(parser);
                     if (id >= 0) {
@@ -608,6 +660,8 @@ public class AutoInstallsLayout {
             }
 
             long addedId = folderId;
+
+            Log.d(TAG,"FolderParser title:"+title+" items:"+folderItems.size());
 
             // We can only have folders with >= 2 items, so we need to remove the
             // folder and clean up if less than 2 items were included, or some
@@ -672,6 +726,10 @@ public class AutoInstallsLayout {
                 "http://schemas.android.com/apk/res-auto/com.ifnoif.launcher", attribute);
         if (value == null) {
             value = parser.getAttributeValue(null, attribute);
+
+        }
+        if (value!=null && value.contains("APP_GALLERY")) {
+            Log.d(TAG, "getAttributeValue value:" + value + " attribute:" + attribute);
         }
         return value;
     }

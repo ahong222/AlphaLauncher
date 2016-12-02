@@ -62,6 +62,7 @@
     <uses-permission android:name="com.ifnoif.launcher.permission.WRITE_SETTINGS" />
     <uses-permission android:name="com.ifnoif.launcher.permission.RECEIVE_LAUNCH_BROADCASTS" />
     <uses-permission android:name="com.ifnoif.launcher.permission.RECEIVE_FIRST_LOAD_BROADCAST" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="@bool/enable_backup"
@@ -71,7 +72,8 @@
         android:label="@string/app_name"
         android:largeHeap="true"
         android:restoreAnyVersion="true"
-        android:supportsRtl="true" >
+        android:supportsRtl="true"
+        android:name=".LauncherApplication">
 
         <activity
             android:name="com.ifnoif.launcher.Launcher"

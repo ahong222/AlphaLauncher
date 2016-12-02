@@ -24,11 +24,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
 import com.ifnoif.launcher.util.Thunk;
-import com.ifnoif.launcher.backup.nano.BackupProtos;
 
 import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.IOException;
+
+//import com.ifnoif.launcher.backup.nano.BackupProtos;
 
 /**
  * A class that parses content values corresponding to some common app types.
@@ -45,7 +46,8 @@ public class CommonAppTypeParser implements AutoInstallsLayout.LayoutParserCallb
     private final long mItemId;
     @Thunk
     final int mResId;
-    @Thunk final Context mContext;
+    @Thunk
+    final Context mContext;
 
     ContentValues parsedValues;
     Intent parsedIntent;
@@ -116,24 +118,43 @@ public class CommonAppTypeParser implements AutoInstallsLayout.LayoutParserCallb
         }
     }
 
+    public static final class Favorite {
+
+        // enum TargetType
+        public static final int TARGET_NONE = 0;
+        public static final int TARGET_PHONE = 1;
+        public static final int TARGET_MESSENGER = 2;
+        public static final int TARGET_EMAIL = 3;
+        public static final int TARGET_BROWSER = 4;
+        public static final int TARGET_GALLERY = 5;
+        public static final int TARGET_CAMERA = 6;
+    }
+    //    public static final int TARGET_NONE = 0;
+//    public static final int TARGET_PHONE = 1;
+//    public static final int TARGET_MESSENGER = 2;
+//    public static final int TARGET_EMAIL = 3;
+//    public static final int TARGET_BROWSER = 4;
+//    public static final int TARGET_GALLERY = 5;
+//    public static final int TARGET_CAMERA = 6;
+
     public static int getResourceForItemType(int type) {
         switch (type) {
-            case BackupProtos.Favorite.TARGET_PHONE:
+            case Favorite.TARGET_PHONE:
                 return R.xml.app_target_phone;
 
-            case BackupProtos.Favorite.TARGET_MESSENGER:
+            case Favorite.TARGET_MESSENGER:
                 return R.xml.app_target_messenger;
 
-            case BackupProtos.Favorite.TARGET_EMAIL:
+            case Favorite.TARGET_EMAIL:
                 return R.xml.app_target_email;
 
-            case BackupProtos.Favorite.TARGET_BROWSER:
+            case Favorite.TARGET_BROWSER:
                 return R.xml.app_target_browser;
 
-            case BackupProtos.Favorite.TARGET_GALLERY:
+            case Favorite.TARGET_GALLERY:
                 return R.xml.app_target_gallery;
 
-            case BackupProtos.Favorite.TARGET_CAMERA:
+            case Favorite.TARGET_CAMERA:
                 return R.xml.app_target_camera;
 
             default:
